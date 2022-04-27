@@ -1,5 +1,6 @@
 package com.springboot.hrmbackend.model;
 
+import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,13 +9,13 @@ import java.util.Date;
 public class EmpList {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Long id;
   //@Column(name="name")
   private String name;
   //@Column(name="sex")
-  private char sex;
+  private Character sex;
   //@Column(name="age")
-  private int age;
+  private Integer age;
   //@Column(name="phone")
   private String phone;
   //@Column(name="email")
@@ -44,7 +45,7 @@ public class EmpList {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -80,7 +81,7 @@ public class EmpList {
     this.address = address;
   }
 
-  public char getSex() {
+  public Character getSex() {
     return sex;
   }
 
@@ -103,4 +104,5 @@ public class EmpList {
   public void setEntry_date(String entry_date) {
     this.entry_date = entry_date;
   }
+
 }

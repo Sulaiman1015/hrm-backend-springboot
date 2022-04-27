@@ -9,7 +9,6 @@ spring:
     password: 123
   jpa:
     hibernate:
-
       ddl-auto: update
     database: mysql
     properties:

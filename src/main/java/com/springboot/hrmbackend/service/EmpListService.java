@@ -17,11 +17,20 @@ public class EmpListService {
      return new ArrayList<>(empListRepository.findAll());
    }
 
+   public EmpList getEmpById(int id){
+       return empListRepository.getById(id);
+   }
+
    public void addEmp(EmpList emp){
      empListRepository.save(emp);
    }
 
-   public void deleteEmpById(Integer id){
+   public void deleteEmpById(int id){
        empListRepository.deleteById(id);
+   }
+
+   public EmpList upDateEmp(EmpList emp){
+       empListRepository.save(emp);
+       return emp;
    }
 }

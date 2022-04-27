@@ -20,21 +20,19 @@ public class EmpListController {
 
   //get all emp list
   @GetMapping("/emplist")
-  public List<EmpList> getAllEmps(){
+  private List<EmpList> getAllEmps(){
     return empListService.getAllList();
   }
   //post new emp
   @PostMapping("/emplist")
-  public void addEmp(@RequestBody EmpList emp){
+  private void addEmp(@RequestBody EmpList emp){
     empListService.addEmp(emp);
   }
 
   @PutMapping("/emplist/{id}")
-  public ResponseEntity<EmpList> updateInfo(
-    @PathVariable Integer id,
-    @RequestBody EmpList empInfo)
-  {
-    EmpList emp = empListService.deleteEmpById()
+  private EmpList upDateInfo(@PathVariable("id") Integer id, @RequestBody EmpList emp) {
+    return empListService.upDateEmp(emp);
+/*    EmpList emp = empListService.deleteEmpById()
       .orElseThrow(()-> new ResourceNotFoundException("Employee not exist with id: "+id));
     emp.setName(empInfo.getName());
     emp.setSex(empInfo.getSex());
@@ -42,17 +40,16 @@ public class EmpListController {
     emp.setEmail(empInfo.getEmail());
     emp.setPhone(empInfo.getPhone());
     emp.setAddress(empInfo.getAddress());
-    emp.setSalary(empInfo.getSalary());
     emp.setEntry_date(empInfo.getEntry_date());
 
-    final EmpList updatedEmp = empListRepository.save(emp);
-    return ResponseEntity.ok(updatedEmp);
+    final EmpList updatedEmp = empListService.
+    return ResponseEntity.ok();*/
   }
 
   //delete one emp by id
   @DeleteMapping("/emplist/{id}")
-  public ResponseEntity<String> deleteEmp(@PathVariable("id") Integer id){
+  private Object deleteEmp(@PathVariable("id") Integer id){
     empListService.deleteEmpById(id);
-    return new ResponseEntity<>("emp is deleted", HttpStatus.OK);
+    return "delete success";
   }
 }
