@@ -7,15 +7,17 @@ import com.springboot.hrmbackend.service.EmpListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/api/v1/")
 public class EmpListController {
-  @Autowired
+  @Resource
   private EmpListService empListService;
 
   //get all emp list
@@ -23,16 +25,24 @@ public class EmpListController {
   private List<EmpList> getAllEmps(){
     return empListService.getAllList();
   }
-  //post new emp
-  @PostMapping("/emplist")
-  private void addEmp(@RequestBody EmpList emp){
-    empListService.addEmp(emp);
+
+  //get emp by id
+  @GetMapping("/emplist/{id}")
+  private EmpList getEmpById(@PathVariable("id") Integer id){
+    return empListService.getEmpById(id).get();
   }
 
-  @PutMapping("/emplist/{id}")
-  private EmpList upDateInfo(@PathVariable("id") Integer id, @RequestBody EmpList emp) {
+  //post new emp
+  @PostMapping("/emplist")
+  private Integer addNewEmp(@RequestBody EmpList emp){
+    empListService.addEmp(emp);
+    return emp.getId();
+  }
+
+/*  @PutMapping("/emplist")
+  private EmpList upDateInfo(@RequestBody EmpList emp) {
     return empListService.upDateEmp(emp);
-/*    EmpList emp = empListService.deleteEmpById()
+    EmpList emp = empListService.deleteEmpById()
       .orElseThrow(()-> new ResourceNotFoundException("Employee not exist with id: "+id));
     emp.setName(empInfo.getName());
     emp.setSex(empInfo.getSex());
@@ -43,13 +53,13 @@ public class EmpListController {
     emp.setEntry_date(empInfo.getEntry_date());
 
     final EmpList updatedEmp = empListService.
-    return ResponseEntity.ok();*/
-  }
+    return ResponseEntity.ok();
+  }*/
 
   //delete one emp by id
-  @DeleteMapping("/emplist/{id}")
-  private Object deleteEmp(@PathVariable("id") Integer id){
-    empListService.deleteEmpById(id);
+  @DeleteMapping("/emplist")
+  private String delete(Integer id){
+    empListService.deleteEmp(id);
     return "delete success";
   }
 }

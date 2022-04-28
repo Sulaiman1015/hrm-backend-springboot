@@ -13,10 +13,10 @@ spring:
     database: mysql
     properties:
       hibernate:
-        format-sql: true
     show-sql: false
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-
-
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
 
 

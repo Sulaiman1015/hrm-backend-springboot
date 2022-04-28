@@ -1,31 +1,39 @@
 package com.springboot.hrmbackend.model;
 
-import javax.annotation.sql.DataSourceDefinition;
-import javax.persistence.*;
-import java.util.Date;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+
+@Getter
+@Setter
 @Entity
 @Table(name="emplist")
 public class EmpList {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  //@Column(name="name")
+  @GenericGenerator(name = "id",strategy = "native")//auto id
+  @GeneratedValue(generator = "id")
+  private Integer id;
+  @Column(name="name",length = 32)
   private String name;
-  //@Column(name="sex")
+  @Column(name="sex",length = 6)
   private Character sex;
-  //@Column(name="age")
+  @Column(name="age",length = 6)
   private Integer age;
-  //@Column(name="phone")
+  @Column(name="phone",length = 20)
   private String phone;
-  //@Column(name="email")
+  @Column(name="email",length = 32)
   private String email;
-  //@Column(name="address")
+  @Column(name="address",length = 50)
   private String address;
-  //@Column(name="entry_date")
+  @Column(name="entry_date",length = 20)
   private String entry_date;
 
-  public EmpList() {
+  /*public EmpList() {
   }
 
   public EmpList(String name, char sex, int age,
@@ -39,70 +47,6 @@ public class EmpList {
     this.email = email;
     this.address = address;
     this.entry_date = entry_date;
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public int getAge() {
-    return age;
-  }
-
-  public void setAge(int age) {
-    this.age = age;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getAddress() {
-    return address;
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
-  }
-
-  public Character getSex() {
-    return sex;
-  }
-
-  public void setSex(char sex) {
-    this.sex = sex;
-  }
-
-  public String getPhone() {
-    return phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
-
-  public String getEntry_date() {
-    return entry_date;
-  }
-
-  public void setEntry_date(String entry_date) {
-    this.entry_date = entry_date;
-  }
+  }*/
 
 }
