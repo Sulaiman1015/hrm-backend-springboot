@@ -11,12 +11,14 @@ spring:
     hibernate:
       ddl-auto: update
     database: mysql
-    properties:
-      hibernate:
     show-sql: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
   mvc:
     hiddenmethod:
       filter:
         enabled: true
-
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
 
