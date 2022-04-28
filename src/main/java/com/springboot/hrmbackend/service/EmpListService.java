@@ -23,18 +23,17 @@ public class EmpListService {
        return empListRepository.findById(id);
    }
 
-   @Transactional
    public void addEmp(EmpList emp){
-     empListRepository.save(emp);
+       empListRepository.save(emp);
    }
 
-   @Transactional
    public void deleteEmp(Integer id){
        empListRepository.deleteById(id);
    }
 
-/*    @Transactional
-   public void upDateEmp(EmpList emp,int id){
+   //@Transactional
+   public EmpList upDateEmp(EmpList emp){
        empListRepository.save(emp);
-   }*/
+       return emp;
+   }
 }

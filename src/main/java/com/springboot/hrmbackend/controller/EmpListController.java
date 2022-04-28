@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/")
 public class EmpListController {
-  @Resource
+  @Autowired
   private EmpListService empListService;
 
   //get all emp list
@@ -34,16 +34,18 @@ public class EmpListController {
 
   //post new emp
   @PostMapping("/emplist")
-  private Integer addNewEmp(@RequestBody EmpList emp){
+  private String addNewEmp(@RequestBody EmpList emp){
     empListService.addEmp(emp);
-    return emp.getId();
+    return "save success";
   }
 
-/*  @PutMapping("/emplist")
-  private EmpList upDateInfo(@RequestBody EmpList emp) {
-    return empListService.upDateEmp(emp);
-    EmpList emp = empListService.deleteEmpById()
+@PutMapping("/emplist/{id}")
+  public ResponseEntity<EmpList> updateInfo(
+    @PathVariable("id") Integer id, @RequestBody EmpList empInfo)
+  {
+    EmpList emp = empListService.getEmpById(id)
       .orElseThrow(()-> new ResourceNotFoundException("Employee not exist with id: "+id));
+    //emp.setId(empInfo.getId());
     emp.setName(empInfo.getName());
     emp.setSex(empInfo.getSex());
     emp.setAge(empInfo.getAge());
@@ -52,14 +54,22 @@ public class EmpListController {
     emp.setAddress(empInfo.getAddress());
     emp.setEntry_date(empInfo.getEntry_date());
 
-    final EmpList updatedEmp = empListService.
-    return ResponseEntity.ok();
-  }*/
+    //final EmpList updatedEmp = empListService.upDateEmp(emp);
+    //return ResponseEntity.ok(updatedEmp);
+    return ResponseEntity.ok(empListService.upDateEmp(emp));
+  }
 
-  //delete one emp by id
+  //delete one emp by id ---Method 1 is ok
+  @DeleteMapping("/emplist/{id}")
+  public String deleteEmp(@PathVariable("id") Integer id){
+    empListService.deleteEmp(id);
+    return "delete success";
+  }
+
+  /*//delete one emp by id ---Method 2 is ok too
   @DeleteMapping("/emplist")
   private String delete(Integer id){
     empListService.deleteEmp(id);
     return "delete success";
-  }
+  }*/
 }

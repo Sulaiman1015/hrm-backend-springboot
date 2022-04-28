@@ -15,8 +15,8 @@ import javax.persistence.*;
 @Table(name="emplist")
 public class EmpList {
   @Id
-  @GenericGenerator(name = "id",strategy = "native")//auto id
-  @GeneratedValue(generator = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", unique = true, nullable = false)
   private Integer id;
   @Column(name="name",length = 32)
   private String name;
