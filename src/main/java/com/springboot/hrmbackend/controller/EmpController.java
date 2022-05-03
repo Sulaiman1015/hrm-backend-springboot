@@ -1,22 +1,18 @@
 package com.springboot.hrmbackend.controller;
 
 import com.springboot.hrmbackend.exception.ResourceNotFoundException;
-import com.springboot.hrmbackend.model.EmpList;
-import com.springboot.hrmbackend.repository.EmpListRepository;
+import com.springboot.hrmbackend.entity.EmpList;
 import com.springboot.hrmbackend.service.EmpListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/v1/")
-public class EmpListController {
+public class EmpController {
   @Autowired
   private EmpListService empListService;
 
@@ -52,7 +48,7 @@ public class EmpListController {
     emp.setEmail(empInfo.getEmail());
     emp.setPhone(empInfo.getPhone());
     emp.setAddress(empInfo.getAddress());
-    emp.setEntry_date(empInfo.getEntry_date());
+    emp.setJoin_date(empInfo.getJoin_date());
 
     //final EmpList updatedEmp = empListService.upDateEmp(emp);
     //return ResponseEntity.ok(updatedEmp);

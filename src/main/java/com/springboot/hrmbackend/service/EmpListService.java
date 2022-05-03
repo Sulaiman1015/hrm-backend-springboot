@@ -1,10 +1,9 @@
 package com.springboot.hrmbackend.service;
 
-import com.springboot.hrmbackend.model.EmpList;
+import com.springboot.hrmbackend.entity.EmpList;
 import com.springboot.hrmbackend.repository.EmpListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;

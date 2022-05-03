@@ -1,9 +1,10 @@
-package com.springboot.hrmbackend.model;
+package com.springboot.hrmbackend.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Getter
@@ -15,7 +16,7 @@ public class EmpList {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", unique = true, nullable = false)
   private Integer id;
-  @Column(name="name",length = 32)
+  @Column(name="name",length = 20)
   private String name;
   @Column(name="sex",length = 6)
   private Character sex;
@@ -27,8 +28,8 @@ public class EmpList {
   private String email;
   @Column(name="address",length = 50)
   private String address;
-  @Column(name="entry_date",length = 20)
-  private String entry_date;
+  @Column(name="join_date",length = 20)
+  private Date join_date;
 
   /*public EmpList() {
   }
