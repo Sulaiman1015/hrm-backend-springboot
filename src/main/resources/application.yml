@@ -11,14 +11,28 @@ spring:
     hibernate:
       ddl-auto: update
     database: mysql
-    show-sql: false
+    show-sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
-  mvc:
-    hiddenmethod:
-      filter:
-        enabled: true
-  devtools:
-    restart:
-      enabled: true
-      additional-paths: src/main/java
-
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+#  mvc:
+#    hiddenmethod:
+#      filter:
+#        enabled: true
+#  devtools:
+#    restart:
+#      enabled: true
+#      additional-paths: src/main/java
+#jwt:
+#  # KEY
+#  secret: JWTSecret
+#  # HeaderKEY
+#  tokenHeader: Authorization
+#  # Token前缀字符
+#  tokenPrefix: Sans-
+#  # 过期时间 单位秒 1天后过期=86400 7天后过期=604800
+#  expiration: 86400
+#  # 配置不需要认证的接口
+#  antMatchers: /login/**
